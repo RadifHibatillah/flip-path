@@ -1,0 +1,798 @@
+/* ================================
+       1. Variables & Root Theme
+       ================================ */
+:root {
+  --body-gradient: linear-gradient(135deg, #5c6bc0, #42a5f5);
+  --body-color: #f5f5f5;
+  --bg-color: #ffffff;
+  --primary-text: #212121;
+  --secondary-text: #757575;
+  --accent-color: #1e88e5;
+  --card-shadow: rgba(0, 0, 0, 0.08);
+  --icon-size: 1.4rem;
+}
+.dark-theme {
+  --body-gradient: linear-gradient(135deg, #121212, #1e1e1e);
+  --body-color: #121212;
+  --bg-color: #1e1e1e;
+  --primary-text: #e0e0e0;
+  --secondary-text: #9e9e9e;
+  --accent-color: #90caf9;
+  --card-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ================================
+       2. Global Reset & Base Styles
+       ================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+body {
+  background: var(--body-gradient);
+  color: var(--primary-text);
+  transition: background 0.3s, color 0.3s;
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+img {
+  display: block;
+  border-radius: 50%;
+  max-width: 100%;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+i.fa {
+  font-size: var(--icon-size);
+  color: var(--secondary-text);
+  transition: color 0.2s;
+  cursor: pointer;
+}
+i.fa:hover {
+  color: var(--accent-color);
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ================================
+       3. Loading Screen (Full-Screen)
+       ================================ */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  flex-direction: column;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 8px solid #e0e0e0;
+  border-top: 8px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.loading-text {
+  margin-top: 16px;
+  font-size: 1rem;
+  color: var(--secondary-text);
+  opacity: 0;
+  animation: fadeInText 1.2s ease-in-out forwards;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================================
+       4. Header & Navbar
+       ================================ */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px var(--card-shadow);
+  z-index: 1000;
+  animation: slideUp 0.6s ease-in-out;
+}
+#btn-hamburger {
+  font-size: var(--icon-size);
+  color: var(--secondary-text);
+  margin-right: 1rem;
+  display: none;
+  animation: slideUp 0.8s ease-in-out;
+}
+.logo {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  animation: slideUp 0.7s ease-in-out;
+}
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.header-icons i {
+  position: relative;
+}
+.header-icons i .indicator {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  background: #e53935;
+  border-radius: 50%;
+}
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+  animation: slideUp 0.9s ease-in-out;
+}
+.search-wrapper input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.search-wrapper .fa-search {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--secondary-text);
+}
+
+/* ================================
+       5. Drawer Sidebar (Hidden Off-Canvas)
+       ================================ */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background: var(--bg-color);
+  box-shadow: 2px 0 8px var(--card-shadow);
+  transition: left 0.3s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+.drawer.open {
+  left: 0;
+}
+.drawer .close-btn {
+  text-align: right;
+  padding: 1rem;
+}
+.drawer nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 1rem;
+  animation: slideUp 1.1s ease-in-out;
+}
+.drawer nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  color: var(--primary-text);
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.drawer nav a .fa {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  color: var(--accent-color);
+}
+.drawer nav a:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+#drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  display: none;
+}
+
+/* ================================
+       6. Settings Popover (Avatar Menu)
+       ================================ */
+.popover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 1000;
+}
+.settings-popover {
+  position: absolute;
+  top: 70px;
+  right: 1rem;
+  width: 280px;
+  background: var(--bg-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  animation: slideUp 0.8s ease-in-out;
+  z-index: 1001;
+}
+.settings-popover.open {
+  display: flex;
+}
+.settings-popover .popover-header {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.settings-popover .popover-header .user-info-pop {
+  display: flex;
+  align-items: center;
+}
+.settings-popover .popover-header .user-info-pop img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  object-fit: cover;
+}
+.settings-popover .popover-header .user-info-pop .name {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary-text);
+}
+.settings-popover .popover-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--primary-text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-popover .popover-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.settings-popover .popover-item .fa {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+.settings-popover .popover-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0.25rem 0;
+}
+.toggle-switch {
+  margin-left: auto;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.toggle-switch .toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: left 0.3s;
+}
+.toggle-switch.on {
+  background: var(--accent-color);
+}
+.toggle-switch.on .toggle-thumb {
+  left: 21px;
+}
+
+/* ================================
+       7. Main Layout: Full-Width Content
+       ================================ */
+.layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 1rem;
+  animation: fadeIn 1s ease-in-out;
+  width: 100%;
+  overflow-x: hidden;
+}
+main {
+  flex: 1;
+  padding: 0 1rem;
+  width: 100%;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* ================================
+       8. Story Carousel
+       ================================ */
+.story-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 0.75rem 0;
+  margin-bottom: 1rem;
+  animation: fadeIn 1.3s ease-in-out;
+}
+.story {
+  flex: 0 0 100px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 2px 4px var(--card-shadow);
+  transition: transform 0.3s;
+}
+.story:hover {
+  transform: scale(1.05);
+}
+.story.add-story {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.story .user-thumb {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color);
+  overflow: hidden;
+}
+.story .user-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.story .name-label {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 0.85rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* ================================
+       9. Feed Grid & Post Card
+       ================================ */
+.post-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 1.5s ease-in-out;
+  width: 100%;
+}
+.post-card {
+  background: var(--bg-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  animation: slideUp 1.6s ease-in-out;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+}
+.post-header .user-thumb-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.75rem;
+}
+.post-header .user-thumb-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.post-header .user-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  animation: fadeIn 1.7s ease-in-out;
+}
+.post-header .user-info .name {
+  font-weight: 500;
+  color: var(--primary-text);
+}
+.post-header .user-info .time {
+  font-size: 0.75rem;
+  color: var(--secondary-text);
+}
+.post-header .settings-btn {
+  margin-left: auto;
+  color: var(--secondary-text);
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.2s;
+}
+.post-header .settings-btn:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+.post-body {
+  padding: 0 0.75rem 0.75rem;
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+}
+.post-body a {
+  color: var(--accent-color);
+}
+.post-body img.post-img {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.post-footer {
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+}
+.post-footer .activity {
+  display: flex;
+  gap: 1rem;
+}
+.post-footer .activity span {
+  display: flex;
+  align-items: center;
+}
+.post-footer .activity span .fa {
+  margin-right: 0.25rem;
+}
+.post-footer .profile-more {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.post-footer .profile-more:hover {
+  transform: scale(1.1);
+}
+.post-footer .profile-more img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  object-fit: cover;
+}
+
+/* ================================
+       10. Floating Action Button & Modal
+       ================================ */
+#fab-create-post {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 3px 6px var(--card-shadow);
+  z-index: 1000;
+  transition: background 0.3s, transform 0.3s;
+  animation: slideUp 1.9s ease-in-out;
+}
+#fab-create-post:hover {
+  background: #1565c0;
+  transform: scale(1.1);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  animation: fadeIn 2s ease-in-out;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-content {
+  background: var(--bg-color);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 2.1s ease-in-out;
+}
+.modal-content header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.modal-content header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--primary-text);
+}
+.modal-content header .close-modal {
+  font-size: 1.2rem;
+  color: var(--secondary-text);
+  transition: color 0.2s;
+}
+.modal-content header .close-modal:hover {
+  color: var(--accent-color);
+}
+.modal-content textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  background: var(--body-color);
+  color: var(--primary-text);
+}
+.modal-content .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.modal-content button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.95rem;
+  transition: background 0.3s;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--secondary-text);
+}
+.btn-primary {
+  background: var(--accent-color);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #1565c0;
+}
+
+/* ================================
+       11. Settings Popover (Avatar Menu)
+       ================================ */
+.popover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 1000;
+}
+.popover-overlay.open {
+  display: block;
+}
+.settings-popover {
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  width: 280px;
+  background: var(--bg-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+}
+.settings-popover.open {
+  display: flex;
+}
+.settings-popover .popover-header {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.settings-popover .popover-header .user-info-pop {
+  display: flex;
+  align-items: center;
+}
+.settings-popover .popover-header .user-info-pop img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  object-fit: cover;
+}
+.settings-popover .popover-header .user-info-pop .name {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary-text);
+}
+.settings-popover .popover-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--primary-text);
+  cursor: pointer;
+}
+.settings-popover .popover-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.settings-popover .popover-item .fa {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+.settings-popover .popover-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0.25rem 0;
+}
+.toggle-switch {
+  margin-left: auto;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.toggle-switch .toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: left 0.3s;
+}
+.toggle-switch.on {
+  background: var(--accent-color);
+}
+.toggle-switch.on .toggle-thumb {
+  left: 21px;
+}
+
+/* ================================
+       12. Responsive Breakpoints
+       ================================ */
+@media (max-width: 1024px) {
+  #btn-hamburger {
+    display: block;
+  }
+  header .logo {
+    margin-left: 0.5rem;
+  }
+  .search-wrapper {
+    display: none;
+  }
+  .layout {
+    flex-direction: column;
+  }
+  aside.left-drawer-placeholder {
+    display: none;
+  }
+  main {
+    padding: 0 0.75rem;
+  }
+}
+@media (max-width: 600px) {
+  .post-feed {
+    grid-template-columns: 1fr;
+  }
+  .story {
+    flex: 0 0 80px;
+    height: 140px;
+  }
+  #fab-create-post {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}

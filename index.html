@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta & Title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flip-Path</title>
+
+    <!-- Google Font (Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <!-- FontAwesome (Icon Library) -->
+    <script src="https://use.fontawesome.com/fb956f9e57.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- =================================
+       A. LOADING SCREEN
+       ================================= -->
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading Flip-Path...</div>
+    </div>
+
+    <!-- =================================
+       B. HEADER / NAVBAR
+       ================================= -->
+    <header>
+      <!-- Hamburger untuk buka drawer -->
+      <button id="btn-hamburger" aria-label="Open menu">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <!-- Logo / Judul Aplikasi -->
+      <div class="logo">Flip-Path</div>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <input type="text" placeholder="Search..." aria-label="Search" />
+        <i class="fa fa-search"></i>
+      </div>
+
+      <!-- Icons mirip social media -->
+      <div class="header-icons">
+        <i class="fa fa-home" aria-label="Home"></i>
+        <i class="fa fa-user-plus" aria-label="Friend Requests"></i>
+        <i class="fa fa-comment" aria-label="Messenger">
+          <span class="indicator"></span>
+        </i>
+        <i class="fa fa-bell" aria-label="Notifications">
+          <span class="indicator"></span>
+        </i>
+        <button class="icon-btn profile-btn" id="btn-profile" aria-label="Open settings">
+          <img src="image/profil.png" alt="Foto Profil" />
+        </button>
+      </div>
+    </header>
+
+    <!-- =================================
+       C. DRAWER SIDEBAR KIRI
+       ================================= -->
+    <aside class="drawer" id="drawer-nav" aria-label="Main Menu">
+      <div class="close-btn">
+        <button id="btn-close-drawer" aria-label="Close menu"><i class="fa fa-times"></i></button>
+      </div>
+      <nav>
+        <a href="#"><i class="fa fa-home"></i> Home</a>
+        <a href="#"><i class="fa fa-newspaper-o"></i> Latest News</a>
+        <a href="#"><i class="fa fa-users"></i> Friends</a>
+        <a href="#"><i class="fa fa-object-group"></i> Groups</a>
+        <a href="#"><i class="fa fa-shopping-bag"></i> Marketplace</a>
+        <a href="#"><i class="fa fa-video-camera"></i> Watch</a>
+        <div class="divider" style="height: 1px; margin: 0.5rem 0; background: rgba(0, 0, 0, 0.08)"></div>
+        <a href="#"><i class="fa fa-bookmark"></i> Your Shortcuts</a>
+        <a href="#"><i class="fa fa-code"></i> Web Developers</a>
+        <a href="#"><i class="fa fa-graduation-cap"></i> Web Design Course</a>
+        <a href="#"><i class="fa fa-laptop"></i> Full Stack Development</a>
+      </nav>
+    </aside>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- =================================
+       D. SETTINGS POPOVER (AVATAR MENU)
+       ================================= -->
+    <div class="popover-overlay" id="popover-overlay"></div>
+    <div class="settings-popover" id="settings-popover" role="menu">
+      <div class="popover-header">
+        <div class="user-info-pop">
+          <img src="image/profile-pic.png" alt="Foto Profil" />
+          <div class="name">Radif Hibatillah</div>
+        </div>
+      </div>
+      <div class="popover-item"><i class="fa fa-user"></i><span>See Your Profile</span></div>
+      <div class="popover-item"><i class="fa fa-commenting"></i><span>Give Feedback</span></div>
+      <div class="popover-divider"></div>
+      <div class="popover-item"><i class="fa fa-cog"></i><span>Settings & Privacy</span></div>
+      <div class="popover-item"><i class="fa fa-life-ring"></i><span>Help & Support</span></div>
+      <div class="popover-item">
+        <i class="fa fa-adjust"></i><span>Display & Accessibility</span>
+        <div class="toggle-switch" id="toggle-dark-mode"><div class="toggle-thumb"></div></div>
+      </div>
+      <div class="popover-item"><i class="fa fa-sign-out"></i><span>Logout</span></div>
+    </div>
+
+    <!-- =================================
+       E. MAIN LAYOUT (Sidebar Placeholder + Konten)
+       ================================= -->
+    <div class="layout">
+      <aside class="left-drawer-placeholder"></aside>
+      <main>
+        <div class="story-carousel">
+          <div class="story add-story"><div>+ Add Story</div></div>
+          <div class="story" style="background-image: url('image/img-3.png')">
+            <div class="user-thumb"><img src="image/temen (1).png" alt="Alison" /></div>
+            <div class="name-label">Tuti</div>
+          </div>
+          <div class="story" style="background-image: url('image/img-3.png')">
+            <div class="user-thumb"><img src="image/temen (2).png" alt="Json" /></div>
+            <div class="name-label">Nita</div>
+          </div>
+          <div class="story" style="background-image: url('image/img-3.png')">
+            <div class="user-thumb"><img src="image/temen (3).png" alt="Samona" /></div>
+            <div class="name-label">Niko</div>
+          </div>
+          <div class="story" style="background-image: url('image/img-3.png')">
+            <div class="user-thumb"><img src="image/temen.png" alt="Jack" /></div>
+            <div class="name-label">Dilla</div>
+          </div>
+        </div>
+        <div class="post-feed">
+          <article class="post-card">
+            <div class="post-header">
+              <div class="user-thumb-small"><img src="image/profil.png" alt="Radif Hibatillah" /></div>
+              <div class="user-info"><span class="name">Radif Hibatillah</span><span class="time">May 30, 2025 · 5:30 PM</span></div>
+              <i class="fa fa-ellipsis-h settings-btn" aria-label="Post options"></i>
+            </div>
+            <div class="post-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /><a href="#">#NewPost</a> <a href="#">#MyChannel</a>
+              <img src="image/img-bg.jpg" alt="Contoh Gambar Post" class="post-img" />
+            </div>
+            <div class="post-footer">
+              <div class="activity">
+                <span><i class="fa fa-thumbs-up"></i> 89</span>
+                <span><i class="fa fa-comment"></i> 14</span>
+                <span><i class="fa fa-share"></i> 3</span>
+              </div>
+              <div class="profile-more"><img src="image/profil.png" alt="Radif Hibatillah" /><i class="fa fa-caret-down"></i></div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-header">
+              <div class="user-thumb-small"><img src="image/profil.png" alt="Radif Hibatillah" /></div>
+              <div class="user-info"><span class="name">Radif Hibatillah</span><span class="time">May 30, 2025 · 5:30 PM</span></div>
+              <i class="fa fa-ellipsis-h settings-btn" aria-label="Post options"></i>
+            </div>
+            <div class="post-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /><a href="#">#NewPost</a> <a href="#">#MyChannel</a>
+              <img src="image/img-bg.jpg" alt="Contoh Gambar Post" class="post-img" />
+            </div>
+            <div class="post-footer">
+              <div class="activity">
+                <span><i class="fa fa-thumbs-up"></i> 89</span>
+                <span><i class="fa fa-comment"></i> 14</span>
+                <span><i class="fa fa-share"></i> 3</span>
+              </div>
+              <div class="profile-more"><img src="image/profil.png" alt="Radif Hibatillah" /><i class="fa fa-caret-down"></i></div>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-header">
+              <div class="user-thumb-small"><img src="image/profil.png" alt="Radif Hibatillah" /></div>
+              <div class="user-info"><span class="name">Radif Hibatillah</span><span class="time">May 30, 2025 · 5:30 PM</span></div>
+              <i class="fa fa-ellipsis-h settings-btn" aria-label="Post options"></i>
+            </div>
+            <div class="post-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /><a href="#">#NewPost</a> <a href="#">#MyChannel</a>
+              <img src="image/img-bg.jpg" alt="Contoh Gambar Post" class="post-img" />
+            </div>
+            <div class="post-footer">
+              <div class="activity">
+                <span><i class="fa fa-thumbs-up"></i> 89</span>
+                <span><i class="fa fa-comment"></i> 14</span>
+                <span><i class="fa fa-share"></i> 3</span>
+              </div>
+              <div class="profile-more"><img src="image/profil.png" alt="Radif Hibatillah" /><i class="fa fa-caret-down"></i></div>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+
+    <!-- =================================
+       F. FLOATING ACTION BUTTON (FAB)
+       ================================= -->
+    <button id="fab-create-post" aria-label="Create Post"><i class="fa fa-plus"></i></button>
+
+    <!-- =================================
+       G. MODAL “BUAT POST”
+       ================================= -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <header>
+          <h2 id="modal-title">Buat Post Baru</h2>
+          <button class="close-modal" id="btn-close-modal" aria-label="Close modal"><i class="fa fa-times"></i></button>
+        </header>
+        <textarea placeholder="Apa yang Anda pikirkan?" aria-label="Tulis sesuatu"></textarea>
+        <div class="modal-actions">
+          <button class="btn-secondary" id="cancel-post">Batal</button>
+          <button class="btn-primary" id="submit-post">Posting</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================
+       H. JAVASCRIPT: Interaksi & Toggle
+       ================================= -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
